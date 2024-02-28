@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {createUser, userLogin, getData} = require('../controllers/authController');
+const {createUser, userLogin, getData, generate2fa, verifyOtp} = require('../controllers/authController');
 const requireAuth = require('../middleware/authenticator')
 
 router.get('/', function (req, res) {
@@ -10,6 +10,10 @@ router.get('/', function (req, res) {
 router.post('/signup', createUser)
 
 router.post('/login', userLogin)
+
+router.get('/2fa/generate', generate2fa)
+
+router.post('/verify-otp', verifyOtp)
 
 
 //require auth for all workout routes
